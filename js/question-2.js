@@ -5,26 +5,34 @@ const resultContainer = document.querySelector(".results");
 
 async function games() {
     try {
-    const response = await fetch(url);
-    const result = await response.json();
+        const response = await fetch(url);
 
-    const results = result.results;
+        const result = await response.json();
 
-    resultContainer.innerHTML = "";
+        const results = result.results;
 
-    for (let i = 0; i < results.length; i++) {
+        resultContainer.innerHTML = "";
 
-        if (i === 8) {
+        for (let i = 0; i < results.length; i++) {
+
+            let decoration = "";
+            if (division(i, 2) === 0) {
+                decoration = "highlight";
+            }
+
+            console.log(division(i, 2));
+
+            if (i === 8) {
             break;
-        }
+            }
 
-        resultContainer.innerHTML += `<div class="resultbox">
+            resultContainer.innerHTML += `<div class="resultbox ${decoration}">
                                     <h4>${results[i].name}</h4>
                                     <p>rating: ${results[i].rating}</p>
                                     <p>number of tags: ${results[i].tags.length}</p>
                                     <div>`
                                     
-    }
+        }
     } catch (error) {
         resultContainer.innerHTML = `<div id="error">Something went wrong.</div>`;
     } finally {
