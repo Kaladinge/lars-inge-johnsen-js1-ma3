@@ -20,8 +20,6 @@ async function games() {
                 decoration = "highlight";
             }
 
-            console.log(division(i, 2));
-
             if (i === 8) {
             break;
             }
